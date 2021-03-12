@@ -1,0 +1,94 @@
+This file lists the steps taken to setup the environment to build a django-framework
+environment with PyCharm, using a virtual environment to allow for the use of different
+django and python versions in the future.
+
+Author: Murray Buchanan
+
+###########################################################################################
+Install PyCharm
+	https://www.jetbrains.com/help/pycharm/installation-guide.html#standalone
+###########################################################################################
+1) Download the PyCharm tarball from Jetbrains website.
+2) Verify integrity of the downloaded archive, use the SHA checksum on the Download page.
+	>_ sha256sum pycharm-*.tar.gz
+3) Unpack the pycharm-*.tar.gz file into /opt directory as per filesystem hierachy standard (FHS):
+	>_ sudo tar xzf pycharm-*.tar.gz -C /opt/
+4) Run PyCharm from the bin subdirectory:
+	>_ cd /opt/pycharm-*/bin
+	>_ sh pycharm.sh
+
+(Optional)  To run PyCharm more easily, add the following line to i3 config file. This will
+launch PyCharm with by pressing the Mod+p keyboard combination.
+	>_ bindsym $mod+p exec /opt/pycharm-*/bin/pycharm.sh
+
+###########################################################################################
+Create Virtual Environment for installing specific Django and Python versions
+	https://www.howtoforge.com/tutorial/how-to-install-django-on-ubuntu/
+###########################################################################################
+SETUP PYTHON AND PIP
+--------------------
+1) Python3 likely installed by default. Make a symbolic link of the Python3  binary '/usr/bin/python3' to '/usr/bin/python' as default python command using the following command.
+	>_ update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+2) Check the python version by using 'python' as command:
+	>_ python --version
+   The response should be something like the following:
+	"Python 3.8.2"
+   The configuration of Python3 has been completed.
+
+Next, we will install the package manager for python packages 'python3-pip'.
+
+3) Install python3-pip using the apt command:
+	>_ sudo apt install python3-pip -y
+4) Make the 'pip3' command as default 'pip' version:
+	>_ update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
+5) Check the pip version
+	>_ pip --version
+   The response should be something like the following:
+	"pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)"
+   The installation of the Python package manager (pip) has been completed.
+
+INSTALL DJANGO FRAMEWORK IN PYTHON VIRTUAL ENVIRONMENT
+-----------------------------------------------
+1) Install virtualenv
+	>_ pip install virtualenv
+2) Create a new virtual environment called "venv"
+	>_ virtualenv venv
+3) Activate the virtual environment
+	>_ cd venv
+	>_ source bin/activate
+  Prompt should now begin with (venv), example:
+	(venv) user@machinename:~$ [cursor]
+4) Install specific Django Framework version with pip
+	>_ pip install django==3.0.0
+5) Check the django version:
+	>_ django-admin --version
+   The response should be:
+	"3.0"
+   The Django Framework is now installed on the Python virtual environment.
+6) To return to the normal user and deactivate the virtual environment, run the following:
+	>_ deactivate
+   Now you will be switched back to the normal user environment of your system.
+
+###########################################################################################
+Setup PyCharm for a new project
+	https://www.youtube.com/watch?v=HRLIEgwYSHc&list=PL9ooVrP1hQOED7UWm5FMv4z4b1L8lxnlb&index=4
+	https://www.udemy.com/course/django-graphql/
+###########################################################################################
+1) Open PyCharm
+2) File>Open>~/Documents/Projects/django_learning
+3) File>Settings>Project:django_learning>Python Interpreter
+4) Go to settings gear wheel and click Add
+5) Select Existing Environment
+6) Point exactly to python file: /home/bozo/Documents/Projects/logbook/venv/bin/python3
+7) Click 'Okay'
+8) Right-click on "venv" folder>Open In>Terminal
+	This opens the terminal in the virtual environment.
+9) >_ pip install django=3.0.0i
+10) Navigate to root directory:
+	>_ cd .. [OR] >_ cd ~/Documents/Projects/django_learning
+11) Create project called "Website":
+	>_ django-admin startproject Website
+	The outer "Wesbite" root directory is just a container for the project. This is not
+	a mistake.
+
+END OF DOCUMENT
