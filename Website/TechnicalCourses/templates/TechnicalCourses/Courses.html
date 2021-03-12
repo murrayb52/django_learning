@@ -1,0 +1,12 @@
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+<!-- #ol =ordered list -->
+<img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.CxH5oJPU7bXn5pwnRlfyJAHaDi%26pid%3DApi&f=1"
+<h1>Welcome to Edureka!</h1>
+<ol>
+    <!-- whenever we include python code within html, we do so insider-->
+    {% for x in ac %}
+    <li><a href="/{{x.id}}/">{{x.coursename}}</a></li>
+    {% endfor %}
+</ol>

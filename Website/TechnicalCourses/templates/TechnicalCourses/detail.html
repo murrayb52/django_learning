@@ -1,0 +1,10 @@
+{% if course.pk is 1 %}
+<h2>Welcome to the {{course.coursename}} course page led by {{course.insname}}</h2>
+<h3>Find the course <a href="https://www.edureka.co/python-scripting">here.</a></h3>
+{% elif course.pk is 2 %}
+<h2>Welcome to the {{course.coursename}} course page led by {{course.insname}}</h2>
+<h3>Find the course <a href="https://www.edureka.co/java-course-self-paced">here.</a></h3>
+{% else %}
+<h2>Welcome to the {{course.coursename}} course page led by {{course.insname}}</h2>
+<h3>Go find the link yourself, you lazy fuck</h3>
+{% endif %}

@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Tell django to include the Technicalcourses app
+    # "TechnicalcoursesConfig" has been copied from TechnicalCourses>apps.py
+    'TechnicalCourses.apps.TechnicalcoursesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
