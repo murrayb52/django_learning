@@ -1,6 +1,15 @@
 {% if course.pk is 1 %}
+<img src = https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/180px-Python.svg.png>
 <h2>Welcome to the {{course.coursename}} course page led by {{course.insname}}</h2>
 <h3>Find the course <a href="https://www.edureka.co/python-scripting">here.</a></h3>
+<!--This is an unordered list that contains the self-paced and instructor led options-->
+<ul>
+    {% for j in Allcourses.set.all %}
+    <li>
+        {{ j.ct }}
+    </li>
+    {% endfor %}
+</ul>
 {% elif course.pk is 2 %}
 <h2>Welcome to the {{course.coursename}} course page led by {{course.insname}}</h2>
 <h3>Find the course <a href="https://www.edureka.co/java-course-self-paced">here.</a></h3>
@@ -8,3 +17,21 @@
 <h2>Welcome to the {{course.coursename}} course page led by {{course.insname}}</h2>
 <h3>Go find the link yourself, you lazy fuck</h3>
 {% endif %}
+
+{% if error_message %}<p><strong>{{error_message}}</strong></p>
+{% endif %}
+
+<!--TechnicalCourses used as it is the name of the app-->
+<!--This name will be used as the namespace for all the url's present in this app-->
+<form action="{% url 'TechnicalCourses:yourchoice' course.id %}"
+    method="post">
+    <!--post method alters the data on the server side -->
+    <!--csrf_token template tag should be used in all post to protect against request forgeries-->
+    <!--all post forms targeted at internal urls should use the cross-site request forgeries tag-->
+    {% csrf_token %}
+    {% for choice in course.details_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{choice.id}">
+    <label for="choice{{ forloop.counter }}">{{choice.ct}}</label><br>
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>
